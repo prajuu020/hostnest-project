@@ -95,7 +95,9 @@ app.use("/listings/:id/review",reviewRouter);
 app.use("/",userRouter);
 app.use("/",chatRoute);
 
-
+app.get("/", (req, res) => {
+    res.send("App is working 🚀");
+});
 //standard Request and * means all incoming request
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found!"));
