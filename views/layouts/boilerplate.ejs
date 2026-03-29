@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostNest</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <!-- boot strap links to start -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+  
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+ 
+              <link rel="stylesheet" href="/css/rating.css"/>
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.js"></script>
+
+</head>
+<body>
+    <%- include("../includes/navbar")%>
+
+    <div class="container">
+        <%- include("../includes/flash")%>
+        <%- body %>
+    </div>
+        <%- include("../includes/footer")%>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+     <script src="/js/script.js"></script>
+     
+     <!-- chatBox -->
+     <!-- Chat Button -->
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<!-- Chat Box -->
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    Travel Assistant 🤖
+    <span onclick="toggleChat()">✖</span>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <p><b>Bot:</b> Hi! Where do you want to travel?</p>
+  </div>
+
+  <div class="chat-footer">
+    <input type="text" id= "userInput" placeholder="Ask something..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+async function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chatBody = document.getElementById("chatBody");
+
+  const message = input.value.trim();
+  if (message === "") return;
+
+  // Show user message
+  const userMsg = document.createElement("div");
+  userMsg.className = "message user";
+  userMsg.innerText = message;
+  chatBody.appendChild(userMsg);
+
+  input.value = "";
+
+  // 🤖 Call backend AI
+  const res = await fetch("/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message })
+  });
+
+  const data = await res.json();
+
+  // Show bot reply
+  const botMsg = document.createElement("div");
+  botMsg.className = "message bot";
+  botMsg.innerText = data.reply;
+  chatBody.appendChild(botMsg);
+
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function toggleChat() {
+  const chat = document.getElementById("chatBox");
+
+  if (chat.style.display === "" || chat.style.display === "none") {
+    chat.style.display = "flex";   // OPEN
+  } else {
+    chat.style.display = "none";   // CLOSE
+  }
+}
+</script>
+</body>
+</html>
