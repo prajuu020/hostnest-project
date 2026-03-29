@@ -1,6 +1,6 @@
  require("dotenv").config({path:"./.env"});
 
- const chatRoute = require("./routes/chat");
+const chatRoute = require("../routes/chat");
 const express = require("express");
 const OpenAI = require("openai");
 const app = express();
