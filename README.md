@@ -1,18 +1,48 @@
-## Getting Started
+🏠 HostNest (EJS Project)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A full-stack web application inspired by Airbnb that allows users to list, browse, and manage rental properties.
 
-## Folder Structure
+🚀 Features
 
-The workspace contains two folders by default, where:
+- User authentication (Login / Signup)
+- Add, edit, and delete property listings
+- Upload images for listings
+- View property details
+- Responsive UI with server-side rendering
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+🛠️ Tech Stack
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- Node.js
+- Express.js
+- MongoDB
+- EJS (Embedded JavaScript)
+- Bootstrap / CSS
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+🔗 Live Demo
 
-## Dependency Management
+https://hostnest-project.onrender.com
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+📂 GitHub Repository
+
+https://github.com/prajuu020/hostnest-project.git
+
+⚙️ Setup Instructions
+
+1. Clone the repository
+2. Run "npm install"
+3. Create a ".env" file
+4. Add required environment variables
+5. Run "npm start"
+
+🔐 Environment Variables
+
+Add these in ".env" file:
+
+- MONGO_URI=your_mongodb_connection
+- CLOUDINARY_KEY=your_cloudinary_key
+- CLOUDINARY_SECRET=your_secret
+
+
+👨‍💻 Author
+
+P Prajwal
