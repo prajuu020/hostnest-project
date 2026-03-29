@@ -40,6 +40,7 @@ const sessionOptions = {
     },
 };
 
+app.use(express.static(path.join(__dirname,"/public")));
 
 app.use(session(sessionOptions));
 app.use(express.json());
@@ -79,16 +80,11 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-
-
-
-
 app.set("views engine", "ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
-app.use(express.static(path.join(__dirname,"/public")));
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/review",reviewRouter);
@@ -96,7 +92,7 @@ app.use("/",userRouter);
 app.use("/",chatRoute);
 
 app.get("/", (req, res) => {
-    res.send("App is working 🚀");
+    res.redirect("/listings");
 });
 //standard Request and * means all incoming request
 app.use((req, res, next) => {

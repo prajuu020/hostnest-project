@@ -142,7 +142,7 @@ font-weight: 400 !important;
 
 .chat-box {
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 20px;
   width: 320px;
   height: 420px;
